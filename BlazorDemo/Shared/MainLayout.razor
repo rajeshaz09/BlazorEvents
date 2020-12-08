@@ -17,20 +17,22 @@
 </div>
 
 @code{
-    public override async Task SetParametersAsync(ParameterView parameters)
+    //public override async Task SetParametersAsync(ParameterView parameters)
+    //{
+    //    Console.WriteLine($"{nameof(MainLayout)} - { nameof(SetParametersAsync)}");
+    //    await base.SetParametersAsync(parameters);
+    //}
+
+    protected override async Task OnParametersSetAsync()
     {
-        Console.WriteLine($"{nameof(MainLayout)} - { nameof(SetParametersAsync)}");
-        await base.SetParametersAsync(parameters);
+        await Task.Delay(100); // Simulate network call
+        Console.WriteLine($"{nameof(MainLayout)} - { nameof(OnParametersSetAsync)}");
+        await base.OnParametersSetAsync();
     }
 
-    protected override Task OnParametersSetAsync()
-    {
-        Console.WriteLine($"{nameof(MainLayout)} - { nameof(OnParametersSetAsync)}");
-        return base.OnParametersSetAsync();
-    }
-    protected override Task OnInitializedAsync()
-    {
-        Console.WriteLine($"{nameof(MainLayout)} - { nameof(OnInitializedAsync)}");
-        return base.OnInitializedAsync();
-    }
+    //protected override Task OnInitializedAsync()
+    //{
+    //    Console.WriteLine($"{nameof(MainLayout)} - { nameof(OnInitializedAsync)}");
+    //    return base.OnInitializedAsync();
+    //}
 }
