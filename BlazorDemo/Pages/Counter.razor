@@ -1,0 +1,36 @@
+﻿@page "/counter"
+
+<h1>Counter</h1>
+
+<p>Current count: @currentCount</p>
+<p>Current count: @currentCount1</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
+@code {
+    private int currentCount = 0;
+    private int currentCount1 = 0;
+
+    private void IncrementCount()
+    {
+        currentCount++;
+        currentCount1++;
+    }
+
+    public override Task SetParametersAsync(ParameterView parameters)
+    {
+        Console.WriteLine($"{nameof(Counter)} - { nameof(SetParametersAsync)}");
+        return base.SetParametersAsync(parameters);
+    }
+
+    protected override Task OnParametersSetAsync()
+    {
+        Console.WriteLine($"{nameof(Counter)} - { nameof(OnParametersSetAsync)}");
+        return base.OnParametersSetAsync();
+    }
+    protected override Task OnInitializedAsync()
+    {
+        Console.WriteLine($"{nameof(Counter)} - { nameof(OnInitializedAsync)}");
+        return base.OnInitializedAsync();
+    }
+}
